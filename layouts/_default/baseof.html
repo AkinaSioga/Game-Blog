@@ -1,6 +1,6 @@
 <!doctype html>
 <html
-  lang="{{ .Site.Language.Locale }}" 
+  lang="{{ .Site.Language.Locale }}"
   {{ if eq .Site.Params.dark_mode.enable true -}}
     data-theme-mode="true"
   {{ else if eq .Site.Params.dark_mode.enable false -}}
@@ -18,7 +18,7 @@
       {{- .Site.Params.injector.head_end | safeHTML -}}
     {{- end -}}
   </head>
-  <body>
+  <body{{ if hasPrefix .RelPermalink "/games/" }} class="page-games"{{ end }}>
     {{- if .Site.Params.injector.body_begin -}}
       {{- .Site.Params.injector.body_begin | safeHTML -}}
     {{- end -}}
@@ -26,24 +26,31 @@
     <div id="container">
       <div id="wrap">
         {{- partial "header.html" . -}}
-        {{- /* Backward compatibility */ -}}
-        {{- $globalSidebar := .Site.Params.sidebar -}}
-        {{- if reflect.IsMap $globalSidebar -}}
-          {{- $globalSidebar = $globalSidebar.position -}}
-        {{- end -}}
-        {{- $pageSidebar := .Params.sidebar -}}
-        {{- if reflect.IsMap $pageSidebar -}}
-          {{- $pageSidebar = $pageSidebar.position -}}
-        {{- end -}}
-        {{/* 攻略站：/games/ 页面强制左侧导航树布局 */}}
         {{- $isGamesSection := hasPrefix .RelPermalink "/games/" -}}
-        <div id="content"
-          aria-label="Page content"
-          {{ if or $isGamesSection (and (eq $globalSidebar "left") (eq $pageSidebar nil)) (eq $pageSidebar "left") }}class="sidebar-left"{{ end }}
-          {{ if and (not $isGamesSection) (or (and (eq $globalSidebar "right") (eq $pageSidebar nil)) (eq $pageSidebar "right")) }}class="sidebar-right"{{ end }}  >
-          {{- partial "sidebar.html" . -}}
-          <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
-        </div>
+        {{- if $isGamesSection -}}
+          {{/* 攻略站：/games/ 页面 — 左侧导航树 + 内容居中 */}}
+          <div id="content" class="sidebar-left" aria-label="Page content">
+            {{- partial "sidebar.html" . -}}
+            <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
+          </div>
+        {{- else -}}
+          {{/* 非 games 页面：使用原有主题布局 */}}
+          {{- $globalSidebar := .Site.Params.sidebar -}}
+          {{- if reflect.IsMap $globalSidebar -}}
+            {{- $globalSidebar = $globalSidebar.position -}}
+          {{- end -}}
+          {{- $pageSidebar := .Params.sidebar -}}
+          {{- if reflect.IsMap $pageSidebar -}}
+            {{- $pageSidebar = $pageSidebar.position -}}
+          {{- end -}}
+          <div id="content"
+            aria-label="Page content"
+            {{ if or (and (eq $globalSidebar "left") (eq $pageSidebar nil)) (eq $pageSidebar "left") }}class="sidebar-left"{{ end }}
+            {{ if or (and (eq $globalSidebar "right") (eq $pageSidebar nil)) (eq $pageSidebar "right") }}class="sidebar-right"{{ end }}  >
+            {{- partial "sidebar.html" . -}}
+            <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
+          </div>
+        {{- end -}}
         {{- partialCached "footer.html" . -}}
         {{- if .Site.Params.top.enable -}}
           <div class="sidebar-top">
