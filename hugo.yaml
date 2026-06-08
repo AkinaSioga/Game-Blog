@@ -1,6 +1,6 @@
 baseURL: https://akinasuki.love/
 locale: zh-CN
-title: AkinaSioga's Blog
+title: Dasvidaniya
 theme: reimu
 
 params:
@@ -8,7 +8,7 @@ params:
   email: a80142980@gmail.com
   description: "少女祈祷中..."
   subtitle:
-    text: "欢迎来到我的博客～"
+    text: "只要执着的够久，故事一定就会迎来好结局，不是吗？"
   mainSections: ["post"]
   dateFormat: "2006-01-02"
   timeFormat: "2006-01-02 15:04:05"
