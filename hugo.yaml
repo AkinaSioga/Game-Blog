@@ -1,0 +1,85 @@
+baseURL: https://AkinaSioga.github.io/
+locale: zh-CN
+title: AkinaSioga's Blog
+theme: reimu
+
+params:
+  author: AkinaSioga
+  email: a80142980@gmail.com
+  description: "少女祈祷中..."
+  subtitle:
+    text: "欢迎来到我的博客～"
+  mainSections: ["post"]
+  dateFormat: "2006-01-02"
+  timeFormat: "2006-01-02 15:04:05"
+
+  # Menu
+  menu:
+    - name: home
+      url: ""
+    - name: archives
+      url: "archives"
+    - name: about
+      url: "about"
+    - name: friend
+      url: "friend"
+
+  # Dark mode
+  dark_mode:
+    enable: auto
+
+  # Sidebar
+  sidebar:
+    position: right
+
+  # Widgets
+  widgets:
+    - category
+    - tag
+    - recent_posts
+
+  # Preloader
+  preloader:
+    enable: true
+
+  # Cursor
+  reimu_cursor:
+    enable: true
+
+  # Firework
+  firework:
+    enable: true
+
+  # Pace loading bar
+  pace:
+    enable: true
+
+  # Code block
+  code_block:
+    expand: true
+
+  # Math
+  math:
+    katex:
+      enable: true
+    mathjax:
+      enable: false
+
+  # Social
+  social:
+    github: https://github.com/AkinaSioga
+
+  # Footer
+  footer:
+    since: 2026
+    powered: true
+    count: true
+
+  # Comment - disabled by default, configure later
+  comment:
+    default: waline
+
+  # Top button
+  top:
+    enable: true
+    position: right

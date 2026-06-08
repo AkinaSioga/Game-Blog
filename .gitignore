@@ -1,0 +1,12 @@
+# Generated files by Hugo
+/public/
+/resources/
+/.hugo_build.lock
+
+# Filesystem
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
