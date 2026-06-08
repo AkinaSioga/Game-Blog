@@ -1,0 +1,41 @@
+{{/* 游戏攻略导航树 — 左侧层级导航，展示所有游戏及子分类 */}}
+{{- $gamesSection := .Site.GetPage "/games" -}}
+{{- $segments := split (trim .RelPermalink "/") "/" -}}
+{{- $currentGame := "" -}}
+{{- if ge (len $segments) 2 -}}
+  {{- $currentGame = index $segments 1 -}}
+{{- end -}}
+{{- $currentPath := .RelPermalink -}}
+
+<nav class="game-nav-tree" aria-label="游戏导航">
+  <div class="game-nav-header">
+    <a href="{{ $gamesSection.RelPermalink }}" class="game-nav-header-link">
+      <span class="game-nav-header-icon"></span>
+      <span>游戏攻略</span>
+    </a>
+  </div>
+  <ul class="game-nav-list">
+    {{- range $gamesSection.Sections.ByWeight -}}
+      {{- $isActive := eq $currentGame (urls.Parse .RelPermalink).Path | replaceRE "^/(.*?)/?$" "$1" | path.Base -}}
+      {{- $gameActive := hasPrefix $currentPath .RelPermalink -}}
+      <li class="game-nav-item">
+        <a href="{{ .RelPermalink }}" class="game-nav-link{{ if $gameActive }} active{{ end }}" data-game="{{ .Title }}">
+          <span class="game-nav-arrow"></span>
+          <span>{{ .Title }}</span>
+        </a>
+        {{- if .Sections -}}
+          <ul class="game-nav-sub{{ if $gameActive }} open{{ end }}">
+            {{- range .Sections.ByWeight -}}
+              <li class="game-nav-sub-item">
+                <a href="{{ .RelPermalink }}" class="game-nav-sub-link{{ if eq $currentPath .RelPermalink }} active{{ end }}">
+                  {{ .Title }}
+                  <span class="game-nav-count">{{ len .RegularPages }}</span>
+                </a>
+              </li>
+            {{- end -}}
+          </ul>
+        {{- end -}}
+      </li>
+    {{- end -}}
+  </ul>
+</nav>

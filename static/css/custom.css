@@ -191,3 +191,158 @@
     font-size: 0.8rem;
   }
 }
+
+/* ============================================
+   左侧导航树 — Reimu 风格
+   覆盖：/games/ 页面左侧层级导航
+   ============================================ */
+
+.game-nav-tree {
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+/* 导航树头部 */
+.game-nav-header {
+  padding: 0.75rem 1rem 0.75rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--red-5);
+}
+
+.game-nav-header-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--red-1);
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
+}
+
+.game-nav-header-link:hover {
+  color: var(--red-0);
+}
+
+.game-nav-header-icon::before {
+  content: "\eb92";
+  font-family: inherit;
+  font-size: 1.1rem;
+}
+
+/* 一级游戏列表 */
+.game-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.game-nav-item {
+  margin-bottom: 0.25rem;
+}
+
+/* 游戏链接 */
+.game-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--highlight-foreground);
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.game-nav-link:hover {
+  background: var(--red-5);
+  color: var(--red-1);
+}
+
+.game-nav-link.active {
+  background: var(--red-5-5);
+  color: var(--red-1);
+}
+
+.game-nav-arrow::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* 子分类列表 */
+.game-nav-sub {
+  list-style: none;
+  padding: 0 0 0 1.5rem;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.game-nav-sub.open {
+  max-height: 600px;
+}
+
+.game-nav-sub-item {
+  margin-bottom: 0.15rem;
+}
+
+.game-nav-sub-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.75rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--highlight-comment);
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.game-nav-sub-link:hover {
+  background: var(--red-6);
+  color: var(--red-2);
+}
+
+.game-nav-sub-link.active {
+  background: var(--red-5);
+  color: var(--red-1);
+  font-weight: 500;
+}
+
+.game-nav-count {
+  font-size: 0.75rem;
+  color: var(--highlight-comment);
+  background: var(--highlight-selection);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  min-width: 1.2em;
+  text-align: center;
+}
+
+/* 移动端导航树收起 */
+@media (max-width: 768px) {
+  .game-nav-tree {
+    font-size: 0.85rem;
+  }
+
+  .game-nav-link {
+    padding: 0.4rem 0.5rem;
+  }
+
+  .game-nav-sub-link {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .game-nav-header-link {
+    font-size: 0.95rem;
+  }
+}
