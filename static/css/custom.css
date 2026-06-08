@@ -61,6 +61,26 @@
   align-items: stretch;
 }
 
+/* 侧边栏背景图 + 暗色遮罩保证文字可读 */
+.page-games .sidebar-wrap {
+  background: url("/images/custom/sidebar-bg.png") center/cover no-repeat;
+  position: relative;
+}
+
+.page-games .sidebar-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 26, 0.7);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-games .sidebar-wrap > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* 主内容区：占据剩余宽度 */
 .page-games #content.sidebar-left #main {
   flex: 1 1 auto;
@@ -119,7 +139,7 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 /* 游戏链接 */
@@ -127,7 +147,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 12px;
+  padding: 10px 12px;
   border-radius: 6px;
   text-decoration: none;
   color: var(--highlight-foreground);
@@ -161,7 +181,7 @@
 /* 子分类列表 */
 .game-nav-sub {
   list-style: none;
-  padding: 0 0 0 20px;
+  padding: 4px 0 0 20px;
   margin: 0;
   max-height: 0;
   overflow: hidden;
@@ -380,4 +400,17 @@
   .game-card-title {
     font-size: 0.95rem;
   }
+}
+
+/* ============================================
+   6. 首页 Banner 标题居中修正
+   ============================================ */
+
+#header-title {
+  text-align: center;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
 }

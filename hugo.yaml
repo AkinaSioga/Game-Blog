@@ -5,6 +5,7 @@ theme: reimu
 
 params:
   author: Denia.
+  avatar: "github-avatar.png"
   email: 2648247502@qq.com
   description: "我希望有一个名字，再有一个生日"
   subtitle:
@@ -26,9 +27,10 @@ params:
   dark_mode:
     enable: auto
 
-  # 侧边栏
+  # 侧边栏 — 关闭菜单链接
   sidebar:
     position: right
+    menu: false
 
   # 小组件 — 攻略站仅保留分类与标签组件
   widgets:
@@ -80,3 +82,6 @@ params:
   # 注入自定义 CSS（通过主题 injector 机制，不替换主题文件）
   injector:
     head_end: '<link rel="stylesheet" href="/css/custom.css">'
+
+  # 自定义 Banner / 背景图
+  banner: "images/custom/banner.png"
