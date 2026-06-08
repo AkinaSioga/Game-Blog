@@ -9,63 +9,66 @@ params:
   description: "我希望有一个名字，再有一个生日"
   subtitle:
     text: "只要执着的够久，故事一定就会迎来好结局，不是吗？"
-  mainSections: ["post"]
+
+  # 攻略站使用 games Section 作为内容主体
+  mainSections: ["games"]
   dateFormat: "2006-01-02"
   timeFormat: "2006-01-02 15:04:05"
 
-  # Menu
+  # 导航菜单 — 仅展示一级游戏入口（AGENTS.md 菜单规范）
   menu:
-    - name: home
+    - name: 首页
       url: ""
-    - name: archives
-      url: "archives"
-    - name: about
-      url: "about"
-    - name: friend
-      url: "friend"
+    - name: Warframe
+      url: "games/warframe"
+    - name: 全境封锁2
+      url: "games/division2"
+    - name: 命运2
+      url: "games/destiny2"
+    - name: 鸣潮
+      url: "games/wuwa"
 
-  # Dark mode
+  # 深色模式 — 默认跟随系统
   dark_mode:
     enable: auto
 
-  # Sidebar
+  # 侧边栏
   sidebar:
     position: right
 
-  # Widgets
+  # 小组件 — 攻略站仅保留分类与标签组件
   widgets:
     - category
     - tag
-    - recent_posts
 
-  # Preloader
+  # Preloader 加载动画
   preloader:
     enable: true
 
-  # Cursor
+  # 灵梦光标
   reimu_cursor:
     enable: true
 
-  # Firework
+  # 烟花特效
   firework:
     enable: true
 
-  # Pace loading bar
+  # Pace 加载条
   pace:
     enable: true
 
-  # Code block
+  # 代码块 — 默认展开
   code_block:
     expand: true
 
-  # Math
+  # KaTeX 数学公式
   math:
     katex:
       enable: true
     mathjax:
       enable: false
 
-  # Social
+  # 社交链接
   social:
     github: https://github.com/AkinaSioga
 
@@ -75,11 +78,11 @@ params:
     powered: true
     count: true
 
-  # Comment - disabled by default, configure later
-  comment:
-    default: waline
-
-  # Top button
+  # 回到顶部按钮
   top:
     enable: true
     position: right
+
+  # 注入自定义 CSS（通过主题 injector 机制，不替换主题文件）
+  injector:
+    head_end: '<link rel="stylesheet" href="/css/custom.css">'

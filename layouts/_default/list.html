@@ -1,0 +1,71 @@
+{{- define "main" -}}
+  {{/* 攻略站 Section 列表模板 — 支持三层结构：游戏卡片 → 分类卡片 → 文章列表 */}}
+  {{- $subSections := .Sections -}}
+  {{- $regularPages := .RegularPages -}}
+
+  {{/* 如果有子 Section，展示为卡片网格（游戏入口 或 分类入口） */}}
+  {{- if gt (len $subSections) 0 -}}
+    {{/* Section 标题与简介 */}}
+    <div class="game-section-header">
+      <h1 class="game-section-title">{{ .Title }}</h1>
+      {{- with .Description -}}
+        <p class="game-section-desc">{{ . }}</p>
+      {{- end -}}
+      {{- with .Content -}}
+        <div class="game-section-content">{{ . }}</div>
+      {{- end -}}
+    </div>
+
+    {{/* 子 Section 卡片网格 */}}
+    <div class="game-card-grid">
+      {{- range $subSections.ByWeight -}}
+        <a class="game-card" href="{{ .RelPermalink }}">
+          <div class="game-card-inner">
+            <h2 class="game-card-title">{{ .Title }}</h2>
+            {{- with .Description -}}
+              <p class="game-card-desc">{{ . }}</p>
+            {{- end -}}
+            {{/* 显示该分类下的文章数量 */}}
+            <span class="game-card-count">{{ len .RegularPages }} 篇攻略</span>
+          </div>
+        </a>
+      {{- end -}}
+    </div>
+
+  {{/* 没有子 Section，直接展示文章列表（最底层分类页） */}}
+  {{- else if gt (len $regularPages) 0 -}}
+    <div class="game-section-header">
+      <h1 class="game-section-title">{{ .Title }}</h1>
+      {{- with .Description -}}
+        <p class="game-section-desc">{{ . }}</p>
+      {{- end -}}
+    </div>
+
+    {{/* 文章列表 */}}
+    <div class="game-article-list">
+      {{- range $regularPages.ByDate.Reverse -}}
+        <article class="game-article-item">
+          <h2 class="game-article-title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h2>
+          <div class="game-article-meta">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format .Site.Params.dateFormat }}</time>
+            {{- with .Description -}}
+              <span class="game-article-desc">{{ . }}</span>
+            {{- end -}}
+          </div>
+        </article>
+      {{- end -}}
+    </div>
+
+  {{/* 空 Section，提示暂无内容 */}}
+  {{- else -}}
+    <div class="game-section-header">
+      <h1 class="game-section-title">{{ .Title }}</h1>
+      {{- with .Description -}}
+        <p class="game-section-desc">{{ . }}</p>
+      {{- end -}}
+      <p class="game-section-empty">攻略正在编写中，敬请期待～</p>
+    </div>
+  {{- end -}}
+{{- end -}}
