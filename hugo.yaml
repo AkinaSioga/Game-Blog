@@ -15,18 +15,12 @@ params:
   dateFormat: "2006-01-02"
   timeFormat: "2006-01-02 15:04:05"
 
-  # 导航菜单 — 仅展示一级游戏入口（AGENTS.md 菜单规范）
+  # 导航菜单 — 仅展示首页 + 游戏攻略入口（AGENTS.md 菜单规范）
   menu:
     - name: 首页
       url: ""
-    - name: Warframe
-      url: "games/warframe"
-    - name: 全境封锁2
-      url: "games/division2"
-    - name: 命运2
-      url: "games/destiny2"
-    - name: 鸣潮
-      url: "games/wuwa"
+    - name: 游戏攻略
+      url: "games"
 
   # 深色模式 — 默认跟随系统
   dark_mode:
