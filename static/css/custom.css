@@ -1,20 +1,223 @@
 /* ============================================
-   攻略站自定义样式 — Dasvidaniya
+   Dasvidaniya 自定义样式
    基于 Hugo Theme Reimu 扩展
-   覆盖：游戏卡片网格 / 分类导航 / 文章列表
+   按 AGENTS.md + design.md 规范
    ============================================ */
 
-/* --- 游戏 Section 标题 --- */
+/* ============================================
+   1. Games 页面布局（/games/*）
+   左侧导航树 + 右侧内容
+   ============================================ */
+
+/* 导航栏高度：nav-link padding 20px + icon 24px = ~56px */
+:root {
+    --navbar-height: 56px;
+}
+
+.page-games #header {
+  display: none;
+}
+
+/* 布局容器：flex 横排，顶部统一留出导航栏空间 */
+.page-games #content.sidebar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  max-width: 100%;
+  margin: 0;
+  padding-top: var(--navbar-height);
+}
+
+/* 侧边栏：固定宽度，完全贴左 */
+.page-games #content.sidebar-left #sidebar {
+  display: block;
+  width: 240px;
+  min-width: 240px;
+  max-width: 240px;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* 侧边栏 sticky：从固定导航栏下方开始 */
+.page-games .sidebar-wrapper-container {
+  position: sticky;
+  top: var(--navbar-height);
+  height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* wrapper 内部全部拉满无间隙 */
+.page-games .sidebar-wrapper,
+.page-games .sidebar-wrap {
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+/* 主内容区：占据剩余宽度 */
+.page-games #content.sidebar-left #main {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   2. 加载动画 — 遮罩改暗色，避免刺眼白光
+   ============================================ */
+
+#loader .loading-bg {
+  background-color: rgba(18, 18, 26, 0.92);
+}
+
+[data-theme="dark"] #loader .loading-bg {
+  background-color: rgba(8, 8, 16, 0.95);
+}
+
+/* ============================================
+   3. 左侧导航树
+   ============================================ */
+
+.game-nav-tree {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+/* 导航树头部 — 匹配 Reimu 主题色 */
+.game-nav-header {
+  margin-bottom: 8px;
+  padding: 4px 0 8px;
+  border-bottom: 1px solid var(--red-5);
+}
+
+.game-nav-header-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: var(--red-1);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.game-nav-header-link:hover {
+  color: var(--red-0);
+}
+
+.game-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 游戏链接 */
+.game-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--highlight-foreground);
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.game-nav-link:hover {
+  background: var(--red-5);
+  color: var(--red-1);
+}
+
+.game-nav-link.active {
+  background: var(--red-5-5);
+  color: var(--red-1);
+}
+
+/* 箭头指示器 */
+.game-nav-arrow::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* 子分类列表 */
+.game-nav-sub {
+  list-style: none;
+  padding: 0 0 0 20px;
+  margin: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.game-nav-sub.open {
+  max-height: 600px;
+}
+
+.game-nav-sub-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--highlight-comment);
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.game-nav-sub-link:hover {
+  background: var(--red-6);
+  color: var(--red-2);
+}
+
+.game-nav-sub-link.active {
+  background: var(--red-5);
+  color: var(--red-1);
+  font-weight: 500;
+}
+
+.game-nav-count {
+  font-size: 0.75rem;
+  color: var(--highlight-comment);
+  background: var(--highlight-selection);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+/* ============================================
+   4. 内容区组件（保持 AGENTS.md 规范）
+   ============================================ */
+
+/* Section 标题 */
 .game-section-header {
   text-align: center;
-  margin-bottom: 2.5rem;
-  padding: 2rem 1rem 0;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem 0;
 }
 
 .game-section-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   background: linear-gradient(135deg, var(--red-1), var(--red-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -22,19 +225,11 @@
 }
 
 .game-section-desc {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--highlight-comment);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
-}
-
-.game-section-content {
-  margin-top: 1.5rem;
-  text-align: left;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .game-section-empty {
@@ -43,12 +238,12 @@
   margin-top: 1rem;
 }
 
-/* --- 卡片网格（游戏入口 / 分类入口） --- */
+/* 卡片网格（游戏入口 / 分类入口） */
 .game-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 1rem 2rem;
 }
@@ -71,21 +266,21 @@
 }
 
 .game-card-inner {
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 .game-card-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--highlight-foreground);
 }
 
 .game-card-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--highlight-comment);
   line-height: 1.5;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -98,15 +293,15 @@
   font-weight: 500;
 }
 
-/* --- 文章列表（最底层分类） --- */
+/* 文章列表 */
 .game-article-list {
-  max-width: 800px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 0 1rem 2rem;
 }
 
 .game-article-item {
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--red-5-5);
   transition: background 0.2s ease;
 }
@@ -116,14 +311,13 @@
 }
 
 .game-article-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
 }
 
 .game-article-title a {
   text-decoration: none;
   color: var(--highlight-foreground);
-  transition: color 0.2s ease;
 }
 
 .game-article-title a:hover {
@@ -131,45 +325,49 @@
 }
 
 .game-article-meta {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--highlight-comment);
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
-.game-article-desc {
-  color: var(--highlight-comment);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 400px;
-}
+/* ============================================
+   5. 响应式
+   ============================================ */
 
-/* --- 响应式 --- */
 @media (max-width: 768px) {
+  /* 移动端侧边栏变为 top overlay，不占水平空间 */
+  .page-games #content.sidebar-left {
+    flex-direction: column;
+  }
+
+  .page-games #content.sidebar-left #sidebar {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .page-games .sidebar-wrapper-container {
+    position: relative;
+    top: auto;
+    height: auto;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  .page-games #content.sidebar-left #main {
+    flex: auto;
+    padding: 12px;
+  }
+
   .game-card-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.75rem;
-    padding: 0 0.5rem 2rem;
   }
 
   .game-card-inner {
-    padding: 1rem;
-  }
-
-  .game-card-title {
-    font-size: 1.05rem;
-  }
-
-  .game-section-title {
-    font-size: 1.5rem;
-  }
-
-  .game-article-meta {
-    flex-direction: column;
-    gap: 0.25rem;
-    align-items: flex-start;
+    padding: 0.75rem;
   }
 }
 
@@ -179,15 +377,7 @@
     gap: 0.5rem;
   }
 
-  .game-card-inner {
-    padding: 0.75rem;
-  }
-
   .game-card-title {
     font-size: 0.95rem;
-  }
-
-  .game-card-desc {
-    font-size: 0.8rem;
   }
 }
