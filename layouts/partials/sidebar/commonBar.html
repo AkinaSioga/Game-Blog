@@ -1,0 +1,64 @@
+{{- $params := .ctx.Site.Params -}}
+{{- $mobile := .mobile -}}
+{{/* 攻略站：文章数 = 所有游戏下的子分类总数，分类数 = 游戏入口数 */}}
+{{- $gamesSection := .ctx.Site.GetPage "/games" -}}
+{{- $gameCount := 0 -}}
+{{- $postCount := 0 -}}
+{{- if $gamesSection -}}
+  {{- $gameCount = len $gamesSection.Sections -}}
+  {{- /* 遍历每个游戏，累加其子分类数量 */}}
+  {{- range $gamesSection.Sections -}}
+    {{- $postCount = add $postCount (len .Sections) -}}
+  {{- end -}}
+{{- end -}}
+<div class="sidebar-author">
+  <img
+    data-src="{{ "avatar/" | relURL }}{{ $params.avatar }}"
+    data-sizes="auto"
+    alt="{{ $params.author }}"
+    class="lazyload"
+  />
+  <div class="sidebar-author-name">{{ $params.author }}</div>
+  <div class="sidebar-description">{{ $params.description }}</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>{{ i18n "sidebar.post" }}</div>
+    <div class="sidebar-state-number">{{ $postCount }}</div>
+  </div>
+  <a class="sidebar-state-category" href="{{ "games/" | relLangURL }}" aria-label="sidebar-state-category-link">
+    <div>{{ i18n "sidebar.category" }}</div>
+    <div class="sidebar-state-number">{{ $gameCount }}</div>
+  </a>
+  <a class="sidebar-state-tag" href="{{ "tags/" | relLangURL }}" aria-label="sidebar-state-tag-link">
+    <div>{{ i18n "sidebar.tag" }}</div>
+    <div class="sidebar-state-number">{{ len .ctx.Site.Taxonomies.tags }}</div>
+  </a>
+</div>
+<div class="sidebar-social" {{ if not $mobile }}style="margin-bottom: 20px;"{{ end }}>
+  {{- if reflect.IsSlice $params.social -}}
+    {{- range $social := $params.social -}}
+      <div class="icon-{{ $social.name }} sidebar-social-icon">
+        <a
+          href="{{ $social.url }}"
+          itemprop="url"
+          target="_blank"
+          aria-label="{{ $social.name }}"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div>
+    {{- end -}}
+  {{- else -}}
+    {{- range $name, $url := $params.social -}}
+      <div class="icon-{{ $name }} sidebar-social-icon">
+        <a
+          href="{{ $url }}"
+          itemprop="url"
+          target="_blank"
+          aria-label="{{ $name }}"
+          rel="noopener nofollow noreferrer"
+        ></a>
+      </div>
+    {{- end -}}
+  {{- end -}}
+</div>
