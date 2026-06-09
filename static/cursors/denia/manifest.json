@@ -1,0 +1,328 @@
+{
+  "basePath": "/cursors/denia",
+  "cursors": {
+    "Normal": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "normal/frame-00.cur",
+        "normal/frame-01.cur",
+        "normal/frame-02.cur",
+        "normal/frame-03.cur",
+        "normal/frame-04.cur",
+        "normal/frame-05.cur",
+        "normal/frame-06.cur",
+        "normal/frame-07.cur",
+        "normal/frame-08.cur",
+        "normal/frame-09.cur",
+        "normal/frame-10.cur",
+        "normal/frame-11.cur"
+      ]
+    },
+    "Link": {
+      "delayMs": 83,
+      "hotX": 4,
+      "hotY": 0,
+      "frames": [
+        "link/frame-00.cur",
+        "link/frame-01.cur",
+        "link/frame-02.cur",
+        "link/frame-03.cur",
+        "link/frame-04.cur",
+        "link/frame-05.cur",
+        "link/frame-06.cur",
+        "link/frame-07.cur",
+        "link/frame-08.cur",
+        "link/frame-09.cur",
+        "link/frame-10.cur",
+        "link/frame-11.cur"
+      ]
+    },
+    "Text": {
+      "delayMs": 83,
+      "hotX": 4,
+      "hotY": 9,
+      "frames": [
+        "text/frame-00.cur",
+        "text/frame-01.cur",
+        "text/frame-02.cur",
+        "text/frame-03.cur",
+        "text/frame-04.cur",
+        "text/frame-05.cur",
+        "text/frame-06.cur",
+        "text/frame-07.cur",
+        "text/frame-08.cur",
+        "text/frame-09.cur",
+        "text/frame-10.cur",
+        "text/frame-11.cur"
+      ]
+    },
+    "Help": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "help/frame-00.cur",
+        "help/frame-01.cur",
+        "help/frame-02.cur",
+        "help/frame-03.cur",
+        "help/frame-04.cur",
+        "help/frame-05.cur",
+        "help/frame-06.cur",
+        "help/frame-07.cur",
+        "help/frame-08.cur",
+        "help/frame-09.cur",
+        "help/frame-10.cur",
+        "help/frame-11.cur"
+      ]
+    },
+    "Working": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "working/frame-00.cur",
+        "working/frame-01.cur",
+        "working/frame-02.cur",
+        "working/frame-03.cur",
+        "working/frame-04.cur",
+        "working/frame-05.cur",
+        "working/frame-06.cur",
+        "working/frame-07.cur",
+        "working/frame-08.cur",
+        "working/frame-09.cur",
+        "working/frame-10.cur",
+        "working/frame-11.cur"
+      ]
+    },
+    "Busy": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "busy/frame-00.cur",
+        "busy/frame-01.cur",
+        "busy/frame-02.cur",
+        "busy/frame-03.cur",
+        "busy/frame-04.cur",
+        "busy/frame-05.cur",
+        "busy/frame-06.cur",
+        "busy/frame-07.cur",
+        "busy/frame-08.cur",
+        "busy/frame-09.cur",
+        "busy/frame-10.cur",
+        "busy/frame-11.cur"
+      ]
+    },
+    "Precision": {
+      "delayMs": 83,
+      "hotX": 5,
+      "hotY": 6,
+      "frames": [
+        "precision/frame-00.cur",
+        "precision/frame-01.cur",
+        "precision/frame-02.cur",
+        "precision/frame-03.cur",
+        "precision/frame-04.cur",
+        "precision/frame-05.cur",
+        "precision/frame-06.cur",
+        "precision/frame-07.cur",
+        "precision/frame-08.cur",
+        "precision/frame-09.cur",
+        "precision/frame-10.cur",
+        "precision/frame-11.cur"
+      ]
+    },
+    "Unavailable": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "unavailable/frame-00.cur",
+        "unavailable/frame-01.cur",
+        "unavailable/frame-02.cur",
+        "unavailable/frame-03.cur",
+        "unavailable/frame-04.cur",
+        "unavailable/frame-05.cur",
+        "unavailable/frame-06.cur",
+        "unavailable/frame-07.cur",
+        "unavailable/frame-08.cur",
+        "unavailable/frame-09.cur",
+        "unavailable/frame-10.cur",
+        "unavailable/frame-11.cur"
+      ]
+    },
+    "Handwriting": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "handwriting/frame-00.cur",
+        "handwriting/frame-01.cur",
+        "handwriting/frame-02.cur",
+        "handwriting/frame-03.cur",
+        "handwriting/frame-04.cur",
+        "handwriting/frame-05.cur",
+        "handwriting/frame-06.cur",
+        "handwriting/frame-07.cur",
+        "handwriting/frame-08.cur",
+        "handwriting/frame-09.cur",
+        "handwriting/frame-10.cur",
+        "handwriting/frame-11.cur"
+      ]
+    },
+    "Move": {
+      "delayMs": 83,
+      "hotX": 15,
+      "hotY": 15,
+      "frames": [
+        "move/frame-00.cur",
+        "move/frame-01.cur",
+        "move/frame-02.cur",
+        "move/frame-03.cur",
+        "move/frame-04.cur",
+        "move/frame-05.cur",
+        "move/frame-06.cur",
+        "move/frame-07.cur",
+        "move/frame-08.cur",
+        "move/frame-09.cur",
+        "move/frame-10.cur",
+        "move/frame-11.cur"
+      ]
+    },
+    "Vertical": {
+      "delayMs": 83,
+      "hotX": 15,
+      "hotY": 15,
+      "frames": [
+        "vertical/frame-00.cur",
+        "vertical/frame-01.cur",
+        "vertical/frame-02.cur",
+        "vertical/frame-03.cur",
+        "vertical/frame-04.cur",
+        "vertical/frame-05.cur",
+        "vertical/frame-06.cur",
+        "vertical/frame-07.cur",
+        "vertical/frame-08.cur",
+        "vertical/frame-09.cur",
+        "vertical/frame-10.cur",
+        "vertical/frame-11.cur"
+      ]
+    },
+    "Horizontal": {
+      "delayMs": 83,
+      "hotX": 15,
+      "hotY": 15,
+      "frames": [
+        "horizontal/frame-00.cur",
+        "horizontal/frame-01.cur",
+        "horizontal/frame-02.cur",
+        "horizontal/frame-03.cur",
+        "horizontal/frame-04.cur",
+        "horizontal/frame-05.cur",
+        "horizontal/frame-06.cur",
+        "horizontal/frame-07.cur",
+        "horizontal/frame-08.cur",
+        "horizontal/frame-09.cur",
+        "horizontal/frame-10.cur",
+        "horizontal/frame-11.cur"
+      ]
+    },
+    "Diagonal1": {
+      "delayMs": 83,
+      "hotX": 15,
+      "hotY": 15,
+      "frames": [
+        "diagonal1/frame-00.cur",
+        "diagonal1/frame-01.cur",
+        "diagonal1/frame-02.cur",
+        "diagonal1/frame-03.cur",
+        "diagonal1/frame-04.cur",
+        "diagonal1/frame-05.cur",
+        "diagonal1/frame-06.cur",
+        "diagonal1/frame-07.cur",
+        "diagonal1/frame-08.cur",
+        "diagonal1/frame-09.cur",
+        "diagonal1/frame-10.cur",
+        "diagonal1/frame-11.cur"
+      ]
+    },
+    "Diagonal2": {
+      "delayMs": 83,
+      "hotX": 15,
+      "hotY": 15,
+      "frames": [
+        "diagonal2/frame-00.cur",
+        "diagonal2/frame-01.cur",
+        "diagonal2/frame-02.cur",
+        "diagonal2/frame-03.cur",
+        "diagonal2/frame-04.cur",
+        "diagonal2/frame-05.cur",
+        "diagonal2/frame-06.cur",
+        "diagonal2/frame-07.cur",
+        "diagonal2/frame-08.cur",
+        "diagonal2/frame-09.cur",
+        "diagonal2/frame-10.cur",
+        "diagonal2/frame-11.cur"
+      ]
+    },
+    "Alternate": {
+      "delayMs": 83,
+      "hotX": 4,
+      "hotY": 0,
+      "frames": [
+        "alternate/frame-00.cur",
+        "alternate/frame-01.cur",
+        "alternate/frame-02.cur",
+        "alternate/frame-03.cur",
+        "alternate/frame-04.cur",
+        "alternate/frame-05.cur",
+        "alternate/frame-06.cur",
+        "alternate/frame-07.cur",
+        "alternate/frame-08.cur",
+        "alternate/frame-09.cur",
+        "alternate/frame-10.cur",
+        "alternate/frame-11.cur"
+      ]
+    },
+    "Pin": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "pin/frame-00.cur",
+        "pin/frame-01.cur",
+        "pin/frame-02.cur",
+        "pin/frame-03.cur",
+        "pin/frame-04.cur",
+        "pin/frame-05.cur",
+        "pin/frame-06.cur",
+        "pin/frame-07.cur",
+        "pin/frame-08.cur",
+        "pin/frame-09.cur",
+        "pin/frame-10.cur",
+        "pin/frame-11.cur"
+      ]
+    },
+    "Person": {
+      "delayMs": 83,
+      "hotX": 0,
+      "hotY": 0,
+      "frames": [
+        "person/frame-00.cur",
+        "person/frame-01.cur",
+        "person/frame-02.cur",
+        "person/frame-03.cur",
+        "person/frame-04.cur",
+        "person/frame-05.cur",
+        "person/frame-06.cur",
+        "person/frame-07.cur",
+        "person/frame-08.cur",
+        "person/frame-09.cur",
+        "person/frame-10.cur",
+        "person/frame-11.cur"
+      ]
+    }
+  }
+}

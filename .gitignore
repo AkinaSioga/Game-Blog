@@ -10,3 +10,7 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# Local dev server logs
+hugo-server*.log
+
