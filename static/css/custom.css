@@ -414,3 +414,54 @@
   padding: 0 16px;
   box-sizing: border-box;
 }
+/* ============================================
+   7. 达妮娅动态鼠标指针
+   通过 JS 循环 .cur 帧复刻 Windows .ani 指针方案
+   ============================================ */
+
+html.denia-cursor-ready,
+html.denia-cursor-ready body,
+html.denia-cursor-ready body * {
+  cursor: var(--denia-cursor-normal, auto) !important;
+}
+
+html.denia-cursor-ready a,
+html.denia-cursor-ready button,
+html.denia-cursor-ready summary,
+html.denia-cursor-ready label,
+html.denia-cursor-ready select,
+html.denia-cursor-ready [role="button"],
+html.denia-cursor-ready [type="button"],
+html.denia-cursor-ready [type="submit"],
+html.denia-cursor-ready .nav-icon,
+html.denia-cursor-ready .popup-trigger,
+html.denia-cursor-ready .game-card {
+  cursor: var(--denia-cursor-link, pointer) !important;
+}
+
+html.denia-cursor-ready input,
+html.denia-cursor-ready textarea,
+html.denia-cursor-ready [contenteditable="true"] {
+  cursor: var(--denia-cursor-text, text) !important;
+}
+
+html.denia-cursor-ready code,
+html.denia-cursor-ready pre {
+  cursor: var(--denia-cursor-precision, crosshair) !important;
+}
+
+html.denia-cursor-ready [draggable="true"],
+html.denia-cursor-ready .game-nav-link,
+html.denia-cursor-ready .game-nav-sub-link {
+  cursor: var(--denia-cursor-link, pointer) !important;
+}
+
+html.denia-cursor-ready :disabled,
+html.denia-cursor-ready [aria-disabled="true"] {
+  cursor: var(--denia-cursor-unavailable, not-allowed) !important;
+}
+
+html.denia-cursor-ready #loader,
+html.denia-cursor-ready #loader * {
+  cursor: var(--denia-cursor-busy, wait) !important;
+}

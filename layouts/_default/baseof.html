@@ -14,6 +14,8 @@
       {{- .Site.Params.injector.head_begin | safeHTML -}}
     {{- end -}}
     {{- partial "head.html" . -}}
+    {{/* SEO：为所有页面输出 canonical，避免同一内容被不同 URL 视为重复页面 */}}
+    <link rel="canonical" href="{{ .Permalink }}">
     {{- if .Site.Params.injector.head_end -}}
       {{- .Site.Params.injector.head_end | safeHTML -}}
     {{- end -}}
