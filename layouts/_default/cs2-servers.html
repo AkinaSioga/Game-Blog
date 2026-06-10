@@ -1,0 +1,38 @@
+{{- define "main" -}}
+  <article
+    class="h-entry article cs2-status-article"
+    itemscope
+    itemtype="https://schema.org/WebPage"
+  >
+    <div
+      class="article-inner"
+      data-aos="{{ .Site.Params.animation.options.article.whole }}"
+    >
+      <div class="article-meta">
+        {{- partial "post/date.html" . -}}
+      </div>
+      {{- partial "post/summary.html" . -}}
+      <div class="hr-line"></div>
+      <div class="e-content article-entry" itemprop="mainContentOfPage">
+        {{/* CS2 状态页容器：仅提供前端展示骨架，数据由公开只读 API 在浏览器端读取。 */}}
+        <div class="cs2-status-page" data-cs2-status data-api-url="https://api.akinasuki.love/api/cs2/servers">
+          <section class="cs2-status-toolbar" aria-label="CS2 服务器状态">
+            <div>
+              <p class="cs2-status-kicker">Counter-Strike 2</p>
+              <h2>CS2 服务器状态</h2>
+              <p class="cs2-status-summary" data-cs2-summary>正在读取服务器状态...</p>
+            </div>
+            <button type="button" class="cs2-refresh-button" data-cs2-refresh>
+              刷新状态
+            </button>
+          </section>
+
+          <div class="cs2-status-message" data-cs2-message role="status" aria-live="polite"></div>
+          <div class="cs2-status-grid" data-cs2-grid aria-live="polite"></div>
+        </div>
+      </div>
+      <footer class="article-footer"></footer>
+    </div>
+  </article>
+  <script defer src="/js/cs2-server-status.js?v=20260610-cs2-dark3"></script>
+{{- end -}}

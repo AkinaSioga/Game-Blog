@@ -16,12 +16,14 @@ params:
   dateFormat: "2006-01-02"
   timeFormat: "2006-01-02 15:04:05"
 
-  # 导航菜单 — 仅展示首页 + 游戏攻略入口（AGENTS.md 菜单规范）
+  # 导航菜单 — 顶部 Header 主入口
   menu:
     - name: 首页
       url: ""
     - name: 游戏攻略
       url: "games"
+    - name: CS2 服务器
+      url: "cs2-servers"
 
   # 深色模式 — 默认跟随系统
   dark_mode:
@@ -81,7 +83,7 @@ params:
 
   # 注入自定义 CSS（通过主题 injector 机制，不替换主题文件）
   injector:
-    head_end: '<link rel="stylesheet" href="/css/custom.css">'
+    head_end: '<link rel="stylesheet" href="/css/custom.css?v=20260610-cs2-dark3">'
     body_end: '<script defer src="/js/denia-cursor.js"></script>'
 
   # 自定义 Banner / 背景图

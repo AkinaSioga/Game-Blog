@@ -20,7 +20,7 @@
       {{- .Site.Params.injector.head_end | safeHTML -}}
     {{- end -}}
   </head>
-  <body{{ if hasPrefix .RelPermalink "/games/" }} class="page-games"{{ end }}>
+  <body{{ if hasPrefix .RelPermalink "/games/" }} class="page-games"{{ else if eq .RelPermalink "/cs2-servers/" }} class="page-cs2-servers"{{ end }}>
     {{- if .Site.Params.injector.body_begin -}}
       {{- .Site.Params.injector.body_begin | safeHTML -}}
     {{- end -}}
@@ -45,13 +45,20 @@
           {{- if reflect.IsMap $pageSidebar -}}
             {{- $pageSidebar = $pageSidebar.position -}}
           {{- end -}}
-          <div id="content"
-            aria-label="Page content"
-            {{ if or (and (eq $globalSidebar "left") (eq $pageSidebar nil)) (eq $pageSidebar "left") }}class="sidebar-left"{{ end }}
-            {{ if or (and (eq $globalSidebar "right") (eq $pageSidebar nil)) (eq $pageSidebar "right") }}class="sidebar-right"{{ end }}  >
-            {{- partial "sidebar.html" . -}}
-            <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
-          </div>
+          {{- if eq .RelPermalink "/cs2-servers/" -}}
+            {{/* CS2 状态页：独立工具面板需要完整宽度，因此不渲染主题侧边栏；URL 与 SEO 仍由当前 Page 负责。 */}}
+            <div id="content" class="content-cs2-status" aria-label="Page content">
+              <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
+            </div>
+          {{- else -}}
+            <div id="content"
+              aria-label="Page content"
+              {{ if or (and (eq $globalSidebar "left") (eq $pageSidebar nil)) (eq $pageSidebar "left") }}class="sidebar-left"{{ end }}
+              {{ if or (and (eq $globalSidebar "right") (eq $pageSidebar nil)) (eq $pageSidebar "right") }}class="sidebar-right"{{ end }}  >
+              {{- partial "sidebar.html" . -}}
+              <section id="main" aria-label="Main content">{{ block "main" . }}{{ end }}</section>
+            </div>
+          {{- end -}}
         {{- end -}}
         {{- partialCached "footer.html" . -}}
         {{- if .Site.Params.top.enable -}}
