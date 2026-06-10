@@ -406,6 +406,20 @@
    6. 首页 Banner 标题居中修正
    ============================================ */
 
+.page-home #header {
+  overflow: visible;
+}
+
+.page-home #header img {
+  top: 0;
+  width: 100%;
+  height: clamp(560px, 78vh, 900px);
+  object-fit: cover;
+  object-position: center 34%;
+  -webkit-mask: linear-gradient(to top, transparent 0%, #fff 14%);
+  mask: linear-gradient(to top, transparent 0%, #fff 14%);
+}
+
 #header-title {
   text-align: center;
   left: 50%;
@@ -413,6 +427,10 @@
   width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
+}
+
+.page-home #header-title {
+  transform: translate(-50%, calc(-50% + 56px));
 }
 /* ============================================
    7. 达妮娅动态鼠标指针

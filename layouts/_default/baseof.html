@@ -20,7 +20,7 @@
       {{- .Site.Params.injector.head_end | safeHTML -}}
     {{- end -}}
   </head>
-  <body{{ if hasPrefix .RelPermalink "/games/" }} class="page-games"{{ else if eq .RelPermalink "/cs2-servers/" }} class="page-cs2-servers"{{ end }}>
+  <body{{ if .IsHome }} class="page-home"{{ else if hasPrefix .RelPermalink "/games/" }} class="page-games"{{ else if eq .RelPermalink "/cs2-servers/" }} class="page-home page-cs2-servers"{{ end }}>
     {{- if .Site.Params.injector.body_begin -}}
       {{- .Site.Params.injector.body_begin | safeHTML -}}
     {{- end -}}
