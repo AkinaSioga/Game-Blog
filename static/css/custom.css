@@ -352,6 +352,68 @@
   align-items: center;
 }
 
+/* 万神殿目录页：复用游戏分类卡片，只补充简介和分割线 */
+.pantheon-overview-copy,
+.pantheon-divider {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.pantheon-overview-copy {
+  padding: 0 1rem;
+  margin-bottom: 1.25rem;
+  color: var(--highlight-comment);
+  line-height: 1.7;
+}
+
+.pantheon-overview-copy p {
+  margin: 0 0 0.35rem;
+}
+
+.pantheon-boss-grid {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  padding-bottom: 1.25rem;
+}
+
+.pantheon-divider {
+  border: 0;
+  border-top: 1px solid var(--red-5-5);
+  margin-bottom: 1.25rem;
+}
+
+/* 游戏攻略文章底部上一篇/下一篇导航：统一压缩高度，避免占用过多阅读空间 */
+.page-games #article-nav {
+  margin-top: 10px;
+}
+
+.page-games .article-nav-link-wrap {
+  height: 72px;
+  min-height: 72px;
+  padding: 0 16px;
+}
+
+.page-games .article-nav-caption {
+  font-size: 0.72rem;
+  letter-spacing: 0;
+}
+
+.page-games .article-nav-title {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* 加尔兰攻略正文配图：半宽展示并左对齐 */
+.page-games .article-entry img.gahlran-nailong-image,
+.page-games .article-entry img[src$="Gahlran_NaiLong.jpg"] {
+  width: 6.25%;
+  max-width: 6.25%;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
 /* ============================================
    5. 响应式
    ============================================ */
@@ -388,6 +450,10 @@
 
   .game-card-inner {
     padding: 0.75rem;
+  }
+
+  .pantheon-overview-copy {
+    padding: 0 0.25rem;
   }
 }
 
