@@ -1,0 +1,8 @@
+{{/* 文章正文图片：允许为单张图片添加局部 class，避免开启 Markdown raw HTML。 */}}
+<p>
+  <img
+    src="{{ .Get "src" }}"
+    alt="{{ .Get "alt" }}"
+    {{- with .Get "class" }} class="{{ . }}"{{- end -}}
+  >
+</p>

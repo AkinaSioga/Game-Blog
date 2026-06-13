@@ -15,14 +15,14 @@
       <li class="game-nav-item">
         <a href="{{ .RelPermalink }}" class="game-nav-link{{ if $gameActive }} active{{ end }}" data-game="{{ .Title }}">
           <span class="game-nav-arrow"></span>
-          <span>{{ .Title }}</span>
+          <span>{{ .LinkTitle }}</span>
         </a>
         {{- if .Sections -}}
           <ul class="game-nav-sub{{ if $gameActive }} open{{ end }}">
             {{- range .Sections.ByWeight -}}
               <li class="game-nav-sub-item">
                 <a href="{{ .RelPermalink }}" class="game-nav-sub-link{{ if eq $currentPath .RelPermalink }} active{{ end }}">
-                  {{ .Title }}
+                  {{ .LinkTitle }}
                   <span class="game-nav-count">{{ len .RegularPages }}</span>
                 </a>
               </li>

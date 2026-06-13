@@ -8,8 +8,10 @@
     {{/* Section 标题与简介 */}}
     <div class="game-section-header">
       <h1 class="game-section-title">{{ .Title }}</h1>
-      {{- with .Description -}}
-        <p class="game-section-desc">{{ . }}</p>
+      {{- if not .Params.hideSectionDescription -}}
+        {{- with .Description -}}
+          <p class="game-section-desc">{{ . }}</p>
+        {{- end -}}
       {{- end -}}
       {{- with .Content -}}
         <div class="game-section-content">{{ . }}</div>
@@ -32,12 +34,14 @@
       {{- end -}}
     </div>
 
-  {{/* 没有子 Section，直接展示文章列表（最底层分类页） */}}
-  {{- else if gt (len $regularPages) 0 -}}
+  {{/* 没有子 Section，直接展示文章列表（最底层分类页）；部分目录页可选择只展示 _index.md 正文 */}}
+  {{- else if and (gt (len $regularPages) 0) (not .Params.showContentOnly) -}}
     <div class="game-section-header">
       <h1 class="game-section-title">{{ .Title }}</h1>
-      {{- with .Description -}}
-        <p class="game-section-desc">{{ . }}</p>
+      {{- if not .Params.hideSectionDescription -}}
+        {{- with .Description -}}
+          <p class="game-section-desc">{{ . }}</p>
+        {{- end -}}
       {{- end -}}
     </div>
 
@@ -62,10 +66,17 @@
   {{- else -}}
     <div class="game-section-header">
       <h1 class="game-section-title">{{ .Title }}</h1>
-      {{- with .Description -}}
-        <p class="game-section-desc">{{ . }}</p>
+      {{- if not .Params.hideSectionDescription -}}
+        {{- with .Description -}}
+          <p class="game-section-desc">{{ . }}</p>
+        {{- end -}}
       {{- end -}}
-      <p class="game-section-empty">攻略正在编写中，敬请期待～</p>
     </div>
+    {{- with .Content -}}
+      {{/* 允许只有 _index.md 正文的目录页展示自定义总览内容 */}}
+      <div class="game-section-content">{{ . }}</div>
+    {{- else -}}
+      <p class="game-section-empty">攻略正在编写中，敬请期待～</p>
+    {{- end -}}
   {{- end -}}
 {{- end -}}

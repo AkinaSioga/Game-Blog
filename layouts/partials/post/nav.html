@@ -1,0 +1,115 @@
+{{/* 游戏攻略页按攻略目录顺序修正前后篇；非 games 页面保持主题默认语义。 */}}
+{{- $isGamesPage := hasPrefix .RelPermalink "/games/" -}}
+{{- $isPantheonPage := hasPrefix .RelPermalink "/games/destiny2/pantheon/" -}}
+{{- $previousPage := cond $isGamesPage .NextInSection .PrevInSection -}}
+{{- $nextPage := cond $isGamesPage .PrevInSection .NextInSection -}}
+{{- if or $previousPage $nextPage -}}
+  <nav
+    id="article-nav"
+    {{- if $isPantheonPage }} class="pantheon-article-nav"{{- end }}
+    aria-label="Article navigation"
+    data-aos="{{ .Site.Params.animation.options.article.nav }}"
+  >
+    {{- if $previousPage -}}
+      <div class="article-nav-link-wrap left">
+        {{- if and $previousPage.Params.cover (not (strings.HasPrefix $previousPage.Params.cover "rgb")) -}}
+          <img
+            data-src="{{ $previousPage.Params.cover | relURL }}"
+            data-sizes="auto"
+            alt="{{ $previousPage.Title }}"
+            class="lazyload"
+          />
+        {{- else -}}
+          {{- $covers := partial "helpers/randomCover.html" . -}}
+          {{- if $covers -}}
+            <img
+              data-src="{{ $covers | relURL }}"
+              data-sizes="auto"
+              alt="{{ $previousPage.Title }}"
+              class="lazyload"
+            />
+          {{- else -}}
+            <img
+              data-src="{{ .Site.Params.banner | relURL }}"
+              data-sizes="auto"
+              alt="{{ $previousPage.Title }}"
+              class="lazyload"
+            />
+          {{- end -}}
+        {{- end -}}
+        <a
+          href="{{ $previousPage.Permalink | relURL }}"
+          aria-label="{{ i18n "newer" }}: {{- if $previousPage.Title -}}
+            {{- $previousPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}"
+          title="{{ i18n "newer" }}: {{- if $previousPage.Title -}}
+            {{- $previousPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}"
+        ></a>
+        <div class="article-nav-caption">{{ i18n "newer" }}</div>
+        <h3 class="article-nav-title">
+          {{- if $previousPage.Title -}}
+            {{- $previousPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}
+        </h3>
+      </div>
+    {{- end -}}
+
+    {{- if $nextPage -}}
+      <div class="article-nav-link-wrap right">
+        {{- if and $nextPage.Params.cover (not (strings.HasPrefix $nextPage.Params.cover "rgb")) -}}
+          <img
+            data-src="{{ $nextPage.Params.cover | relURL }}"
+            data-sizes="auto"
+            alt="{{ $nextPage.Title }}"
+            class="lazyload"
+          />
+        {{- else -}}
+          {{- $covers := partial "helpers/randomCover.html" . -}}
+          {{- if $covers -}}
+            <img
+              data-src="{{ $covers | relURL }}"
+              data-sizes="auto"
+              alt="{{ $nextPage.Title }}"
+              class="lazyload"
+            />
+          {{- else -}}
+            <img
+              data-src="{{ .Site.Params.banner | relURL }}"
+              data-sizes="auto"
+              alt="{{ $nextPage.Title }}"
+              class="lazyload"
+            />
+          {{- end -}}
+        {{- end -}}
+        <a
+          href="{{ $nextPage.Permalink | relURL }}"
+          aria-label="{{ i18n "older" }}: {{- if $nextPage.Title -}}
+            {{- $nextPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}"
+          title="{{ i18n "older" }}: {{- if $nextPage.Title -}}
+            {{- $nextPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}"
+        ></a>
+        <div class="article-nav-caption">{{ i18n "older" }}</div>
+        <h3 class="article-nav-title">
+          {{- if $nextPage.Title -}}
+            {{- $nextPage.Title -}}
+          {{- else -}}
+            (no title)
+          {{- end -}}
+        </h3>
+      </div>
+    {{- end -}}
+  </nav>
+{{- end -}}
