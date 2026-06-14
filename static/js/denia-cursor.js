@@ -25,9 +25,16 @@
     Person: '--denia-cursor-person',
   };
 
+  // 统一把 .cur 帧转成同源绝对 URL，避免相对路径在子页面或代理层被重定向规则误解析。
+  function cursorFrameUrl(basePath, frame) {
+    const normalizedBasePath = String(basePath || '/cursors/denia').replace(/\/+$/, '');
+    const normalizedFrame = String(frame || '').replace(/^\/+/, '');
+    return new URL(`${normalizedBasePath}/${normalizedFrame}`, window.location.origin).href;
+  }
+
   function cursorValue(basePath, cursor, frameIndex) {
     const frame = cursor.frames[frameIndex % cursor.frames.length];
-    return `url("${basePath}/${frame}") ${cursor.hotX} ${cursor.hotY}, auto`;
+    return `url("${cursorFrameUrl(basePath, frame)}") ${cursor.hotX} ${cursor.hotY}, auto`;
   }
 
   function setRole(basePath, name, cursor, frameIndex) {
