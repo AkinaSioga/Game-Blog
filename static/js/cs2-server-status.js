@@ -51,16 +51,39 @@
     }).format(date);
   }
 
-  function toConnectText(server) {
-    if (server.connect) {
-      return server.connect;
+  function serverAddress(server) {
+    var explicitAddress = server.address || server.endpoint || "";
+    if (explicitAddress) {
+      var addressText = String(explicitAddress);
+      return addressText.indexOf(":") === -1 && server.port ? addressText + ":" + server.port : addressText;
     }
 
-    if (server.host && server.port) {
-      return "steam://connect/" + server.host + ":" + server.port;
+    var host = server.ip || server.host || "";
+    if (host && String(host).indexOf(":") !== -1) {
+      return String(host);
+    }
+
+    if (host && server.port) {
+      return host + ":" + server.port;
+    }
+
+    var legacyConnect = String(server.connect || "");
+    var legacyMatch = legacyConnect.match(/^steam:\/\/connect\/([^/?#]+)$/i);
+    if (legacyMatch) {
+      return legacyMatch[1];
     }
 
     return "";
+  }
+
+  function toJoinUrl(server) {
+    var address = serverAddress(server);
+    if (!address) {
+      return "";
+    }
+
+    // Steam 启动 CS2 并执行 +connect，避免旧 steam://connect/ 格式无法被 CS2 稳定解析。
+    return "steam://rungameid/730/+connect%20" + encodeURIComponent(address).replace(/%3A/gi, ":");
   }
 
   // 兼容后端字段缺失或离线服务器，只把页面需要的字段规整成稳定结构。
@@ -68,7 +91,8 @@
     var maxPlayers = Number(server.maxPlayers);
     var players = Number(server.players);
     var online = server.online === true;
-    var connect = toConnectText(server);
+    var address = serverAddress(server);
+    var connect = toJoinUrl(server);
 
     return {
       id: server.id || connect || server.name || "unknown",
@@ -84,6 +108,7 @@
       bots: Number.isFinite(Number(server.bots)) ? Number(server.bots) : 0,
       error: server.error || "",
       connect: connect,
+      address: address,
       mode: server.mode || server.difficulty || server.tag || "",
       image: server.image || server.thumbnail || server.mapImage || ""
     };
@@ -132,7 +157,7 @@
       '    </div>',
       '    <div class="cs2-player-row">',
       '      <span class="cs2-player-count">' + escapeHtml(playerText) + '</span>',
-      '      <span class="cs2-status-detail">' + escapeHtml(server.host && server.port ? server.host + ":" + server.port : "") + '</span>',
+      '      <span class="cs2-status-detail">' + escapeHtml(server.address) + '</span>',
       '    </div>',
       '    <footer class="cs2-server-actions">',
       '      <button type="button" class="cs2-copy-button" data-cs2-copy="' + escapeHtml(server.connect) + '"' + connectDisabled + '>复制连接</button>',

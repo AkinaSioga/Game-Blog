@@ -84,7 +84,7 @@ params:
   # 注入自定义 CSS（通过主题 injector 机制，不替换主题文件）
   injector:
     head_end: '<link rel="stylesheet" href="/css/custom.css?v=20260613-gahlran-image-left">'
-    body_end: '<script defer src="/js/denia-cursor.js"></script>'
+    body_end: '<script defer src="/js/denia-cursor.js?v=20260614-cursor-url1"></script>'
 
   # 自定义 Banner / 背景图
   banner: "images/custom/banner.png"
