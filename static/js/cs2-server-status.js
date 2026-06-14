@@ -82,8 +82,8 @@
       return "";
     }
 
-    // Steam 启动 CS2 并执行 +connect，避免旧 steam://connect/ 格式无法被 CS2 稳定解析。
-    return "steam://rungameid/730/+connect%20" + encodeURIComponent(address).replace(/%3A/gi, ":");
+    // Steam rungameid 需要用双斜杠分隔启动参数，否则可能被当作重新启动 CS2 的请求。
+    return "steam://rungameid/730//+connect%20" + encodeURIComponent(address).replace(/%3A/gi, ":");
   }
 
   // 兼容后端字段缺失或离线服务器，只把页面需要的字段规整成稳定结构。
